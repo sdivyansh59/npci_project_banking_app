@@ -49,8 +49,9 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		
 	@Override
-	public void updateCustomerById(Long customerId, Customer customer) {
-				return ;
+	public void updateCustomerById( Customer customer)  throws Exception{
+		customerDao.save(customer);
+		
 	}
 
 	@Override

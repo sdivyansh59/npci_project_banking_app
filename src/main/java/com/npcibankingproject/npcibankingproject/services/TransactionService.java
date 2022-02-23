@@ -8,6 +8,6 @@ public interface TransactionService {
 
 	public List<Transaction> getTransactionById(Long c_id);
 	public List<Transaction> getAllTransaction();
-	public void addTransaction(Transaction transaction);
+	public void addTransaction(Transaction transaction) throws Exception;
 	
 }

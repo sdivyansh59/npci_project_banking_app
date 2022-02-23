@@ -13,7 +13,7 @@ public class Customer {
 @GeneratedValue(strategy = GenerationType.AUTO)
 @Column(nullable = false)
  private Long  cId;
-
+ private double accountBalance ;
  private String  npciAccount;
  private String name;
  private String email;
@@ -22,14 +22,16 @@ public class Customer {
  private char gender ;
  private String address ;
  
+
  //***** constructor  *******
  public Customer() {
 	super();
 	// TODO Auto-generated constructor stub
  }
 
- public Customer(Long cId, String npciAccount, String name, String email, String phone, double age, char gender,
-		String address) {
+
+public Customer(Long cId, String npciAccount, String name, String email, String phone, double age, char gender,
+		String address, double accountBalance) {
 	super();
 	this.cId = cId;
 	this.npciAccount = npciAccount;
@@ -39,7 +41,9 @@ public class Customer {
 	this.age = age;
 	this.gender = gender;
 	this.address = address;
- }
+	this.accountBalance = accountBalance;
+}
+
 
 public Long getcId() {
 	return cId;
@@ -104,7 +108,16 @@ public String getAddress() {
 public void setAddress(String address) {
 	this.address = address;
 }
- 
-// private List<Transaction>  trans_details_list ;
- 
+
+
+public double getAccountBalance() {
+	return accountBalance;
+}
+
+
+public void setAccountBalance(double accountBalance) {
+	this.accountBalance = accountBalance;
+}
+
+
 }

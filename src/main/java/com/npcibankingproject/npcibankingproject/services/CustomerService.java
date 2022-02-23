@@ -10,6 +10,6 @@ public interface CustomerService {
 	public Customer getCustomer(Long customerId);
 	public void addCustomer(Customer customer);
 	public void deleteCustomer(Long customerId) ;
-	public void updateCustomerById( Long customerId, Customer customer);
+	public void updateCustomerById(Customer customer) throws Exception;
 	
 }

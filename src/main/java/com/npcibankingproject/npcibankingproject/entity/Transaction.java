@@ -24,18 +24,27 @@ public class Transaction {
 	@Column(nullable = false)
 	private Long toCId;
 	
+//	@ManyToOne
+//	@JoinColumn(name = "cId")
+//	private Customer customer ;
+	
 	public Transaction() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Transaction(Long transId, double transAmount, Long fromCId, Long toCId) {
+	
+
+	public Transaction(Long transId, double transAmount, Long fromCId, Long toCId, Customer customer) {
 		super();
 		this.transId = transId;
 		this.transAmount = transAmount;
 		this.fromCId = fromCId;
 		this.toCId = toCId;
+//		this.customer = customer;
 	}
+
+
 
 	public Long getTransId() {
 		return transId;
@@ -68,7 +77,19 @@ public class Transaction {
 	public void setToCId(Long toCId) {
 		this.toCId = toCId;
 	}
-	
+
+
+//
+//	public Customer getCustomer() {
+//		return customer;
+//	}
+//
+//
+//
+//	public void setCustomer(Customer customer) {
+//		this.customer = customer;
+//	}
+//	
 	
 
 	

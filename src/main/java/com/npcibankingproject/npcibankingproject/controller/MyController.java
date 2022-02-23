@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,11 +30,7 @@ public class MyController {
 	
 	
 /*******   Customer Controller  ************/
-//	@GetMapping
-//	public String home() {
-//		return "This is home page!";
-//	}
-//	
+
 	@GetMapping
 	public List<Customer> getAllCustomer(){
 		try {
@@ -72,10 +69,10 @@ public class MyController {
 	}
 	
 	
-	@PatchMapping("{customerId}")
-	public ResponseEntity<HttpStatus> updateCustomerById(@PathVariable String  customerId , @RequestBody Customer customer) {
+	@PutMapping
+	public ResponseEntity<HttpStatus> updateCustomerById( @RequestBody Customer customer) {
 		try {
-			customerServiceImpl.updateCustomerById(Long.parseLong(customerId), customer);
+			customerServiceImpl.updateCustomerById( customer);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		catch(Exception e) {
