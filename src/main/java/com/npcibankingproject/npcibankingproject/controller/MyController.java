@@ -3,54 +3,100 @@ package com.npcibankingproject.npcibankingproject.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.npcibankingproject.npcibankingproject.entity.Customer;
+import com.npcibankingproject.npcibankingproject.entity.Transaction;
 import com.npcibankingproject.npcibankingproject.services.CustomerServiceImpl;
+import com.npcibankingproject.npcibankingproject.services.TransactionServiceImpl;
 
 @RestController
+@RequestMapping("/api/customer")
 public class MyController {
 	
 	@Autowired
 	private CustomerServiceImpl customerServiceImpl ;
 	
-	@GetMapping("/")
-	public String home() {
-		return "This is home page!";
-	}
 	
-	@GetMapping("/customers")
+	
+/*******   Customer Controller  ************/
+//	@GetMapping
+//	public String home() {
+//		return "This is home page!";
+//	}
+//	
+	@GetMapping
 	public List<Customer> getAllCustomer(){
-		return customerServiceImpl.getAllCustomer();
+		try {
+			return customerServiceImpl.getAllCustomer();
+		}catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}
+		
 	}
 	
-	@GetMapping("/customer/{customerId}")
+	@GetMapping("/{customerId}")
 	public Customer getCustomer(@PathVariable String customerId) {
-		return customerServiceImpl.getCustomer( Long.parseLong(customerId));
+		try {
+			return customerServiceImpl.getCustomer( Long.parseLong(customerId));
+
+		}catch(Exception e) {
+			System.out.println(e);
+			Customer c = null;
+			return c;
+		}
 	}
 	
-	@PostMapping("/customer")
-	public void addCustomer(@RequestBody Customer customer) {
-		customerServiceImpl.addCustomer(customer);
-		return;
+	@PostMapping
+	public ResponseEntity<HttpStatus> addCustomer(@RequestBody Customer customer) {
+		try {
+			customerServiceImpl.addCustomer(customer);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
+
+		}
+
 	}
 	
-	@PatchMapping("/customer/{customerId}")
-	public void updateCustomerById(@PathVariable String  customerId , @RequestBody Customer customer) {
-		customerServiceImpl.updateCustomerById(Long.parseLong(customerId), customer);	
-		return ;
+	
+	@PatchMapping("{customerId}")
+	public ResponseEntity<HttpStatus> updateCustomerById(@PathVariable String  customerId , @RequestBody Customer customer) {
+		try {
+			customerServiceImpl.updateCustomerById(Long.parseLong(customerId), customer);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
+
+		}
 	}
 	
-	@DeleteMapping("/customer/{customerId}")
-	public void deleteCustomer(@PathVariable String customerId ) {
-		customerServiceImpl.deleteCustomer(Long.parseLong(customerId));
-		return ;
+	@DeleteMapping("{customerId}")
+	public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable String customerId ) {
+		try {
+			customerServiceImpl.deleteCustomer(Long.parseLong(customerId));
+			return new ResponseEntity<>(HttpStatus.OK);
+		}catch(Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<> (HttpStatus.INTERNAL_SERVER_ERROR);
+
+		}
 	}
+	
+	
 	
 }

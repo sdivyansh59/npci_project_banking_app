@@ -1,5 +1,6 @@
 package com.npcibankingproject.npcibankingproject.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,11 +8,13 @@ import javax.persistence.Id;
 
 @Entity
 public class Customer {
+	
 @Id	
 @GeneratedValue(strategy = GenerationType.AUTO)
- private Long  c_id;
+@Column(nullable = false)
+ private Long  cId;
 
- private String  npci_account;
+ private String  npciAccount;
  private String name;
  private String email;
  private String phone;
@@ -19,42 +22,39 @@ public class Customer {
  private char gender ;
  private String address ;
  
- 
  //***** constructor  *******
-public Customer() {
+ public Customer() {
 	super();
 	// TODO Auto-generated constructor stub
-}
+ }
 
-public Customer(Long c_id, String npci_account, String name, String email, String phone, double age, char gender,
+ public Customer(Long cId, String npciAccount, String name, String email, String phone, double age, char gender,
 		String address) {
 	super();
-	this.c_id = c_id;
-	this.npci_account = npci_account;
+	this.cId = cId;
+	this.npciAccount = npciAccount;
 	this.name = name;
 	this.email = email;
 	this.phone = phone;
 	this.age = age;
 	this.gender = gender;
 	this.address = address;
+ }
+
+public Long getcId() {
+	return cId;
 }
 
-
-// **** constructor *****
-public Long getC_id() {
-	return c_id;
+public void setcId(Long cId) {
+	this.cId = cId;
 }
 
-public void setC_id(Long c_id) {
-	this.c_id = c_id;
+public String getNpciAccount() {
+	return npciAccount;
 }
 
-public String getNpci_account() {
-	return npci_account;
-}
-
-public void setNpci_account(String npci_account) {
-	this.npci_account = npci_account;
+public void setNpciAccount(String npciAccount) {
+	this.npciAccount = npciAccount;
 }
 
 public String getName() {
@@ -85,7 +85,7 @@ public double getAge() {
 	return age;
 }
 
-public void setAge(float age) {
+public void setAge(double age) {
 	this.age = age;
 }
 
@@ -105,6 +105,6 @@ public void setAddress(String address) {
 	this.address = address;
 }
  
- 
+// private List<Transaction>  trans_details_list ;
  
 }
