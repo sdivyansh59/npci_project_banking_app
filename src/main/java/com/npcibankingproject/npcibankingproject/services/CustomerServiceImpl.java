@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.npcibankingproject.npcibankingproject.dao.CustomerDao;
 import com.npcibankingproject.npcibankingproject.entity.Customer;
+import com.npcibankingproject.npcibankingproject.exception.CustomerDoesNotExist;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -44,21 +45,23 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void deleteCustomer( Long customerId)  {
 			Customer entity = customerDao.getById(customerId);
+			System.out.println(entity);
 			customerDao.delete(entity);	
-		}
+	}
 		
 		
 	@Override
 	public void updateCustomerById( Customer customer)  throws Exception{
-		customerDao.save(customer);
-		
+		customerDao.save(customer);	
 	}
 
 	@Override
 	public Customer getCustomer(Long customerId) {
-		// TODO Auto-generated method stub
 		Customer c = null;
-		customerDao.getById(customerId);
+		c= customerDao.getById(customerId);
+		if ( c == null) {
+			throw new CustomerDoesNotExist("Customer with customer ID = "+customerId + " does not exist in DB");	
+		}
 		return c;
 	}
 	

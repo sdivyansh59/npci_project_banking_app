@@ -13,13 +13,28 @@ public class Customer {
 @GeneratedValue(strategy = GenerationType.AUTO)
 @Column(nullable = false)
  private Long  cId;
+
+@Column(nullable = false)
  private double accountBalance ;
+
+@Column(nullable = false)
  private String  npciAccount;
+
+@Column(nullable = false)
  private String name;
+
+@Column(nullable = false )
  private String email;
+
+@Column(nullable = false)
  private String phone;
+
+
  private double age;
+
  private char gender ;
+ 
+ @Column(nullable = false)
  private String address ;
  
 

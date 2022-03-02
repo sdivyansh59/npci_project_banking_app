@@ -1,6 +1,4 @@
 package com.npcibankingproject.npcibankingproject.entity;
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,9 +22,6 @@ public class Transaction {
 	@Column(nullable = false)
 	private Long toCId;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "cId")
-//	private Customer customer ;
 	
 	public Transaction() {
 		super();
@@ -77,20 +72,5 @@ public class Transaction {
 	public void setToCId(Long toCId) {
 		this.toCId = toCId;
 	}
-
-
-//
-//	public Customer getCustomer() {
-//		return customer;
-//	}
-//
-//
-//
-//	public void setCustomer(Customer customer) {
-//		this.customer = customer;
-//	}
-//	
-	
-
 	
 }
