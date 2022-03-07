@@ -2,7 +2,10 @@ package com.npcibankingproject.npcibankingproject.controller;
 
 import java.util.List;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,6 +43,7 @@ public class MyController {
 	}
 	
 	@GetMapping("/{customerId}")
+	@Cacheable(value = "employees", key = "#employeeId")
 	public Customer getCustomer(@PathVariable String customerId) {
 			return customerServiceImpl.getCustomer( Long.parseLong(customerId));
 	}
